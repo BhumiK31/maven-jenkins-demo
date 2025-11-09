@@ -1,29 +1,24 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.6-eclipse-temurin-17'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent any
 
     stages {
         stage('Compile') {
             steps {
-                echo 'Compiling the code...'
+                echo '📦 Compiling the code...'
                 sh 'mvn compile'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                echo '🏗️ Building the project...'
                 sh 'mvn package'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo '🧪 Running tests...'
                 sh 'mvn test'
             }
         }
