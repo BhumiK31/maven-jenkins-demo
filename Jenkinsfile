@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9.6-eclipse-temurin-17'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
 
     stages {
         stage('Compile') {
@@ -26,7 +31,7 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build and Test stages completed successfully!'
+            echo '✅ Build completed successfully!'
         }
         failure {
             echo '❌ Something went wrong in the pipeline.'
